@@ -4,14 +4,16 @@ import External.BankAPI;
 import User.User;
 
 public class BankTransfer extends Transfer{
-    BankTransfer(double Amount, User sender) {
+
+    private String BankAcc;
+    BankTransfer(double Amount, User sender,String Reciever) {
         super(Amount, sender);
+        BankAcc=Reciever;
     }
 
     @Override
     boolean checkBalance() {
-        BankAPI endpoint=new BankAPI();
-        return endpoint.getBalance(sender.getSource()) < amount;
+        return sender.getBalance() > amount;
     }
 
     @Override
@@ -22,6 +24,7 @@ public class BankTransfer extends Transfer{
 
     @Override
     boolean sendFunds() {
-        return false;
+        BankAPI endpoint=new BankAPI();
+        return endpoint.deposit(amount,BankAcc);
     }
 }

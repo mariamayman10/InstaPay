@@ -4,14 +4,14 @@ import External.BankAPI;
 public class Bank {
     private String cardNo;
     private Date expDate;
-    public boolean withdraw(double Amount){
+    public boolean withdraw(double amount, String senderID){
         BankAPI endpoint=new BankAPI();
-       return endpoint.withdraw(Amount,cardNo);
+        return endpoint.withdraw(amount, senderID);
 
     }
-    public boolean deposit(double Amount,String RecieverID){
+    public boolean deposit(double Amount, String receiverID){
         BankAPI endpoint=new BankAPI();
-        return endpoint.deposit(Amount,RecieverID);
+        return endpoint.deposit(Amount, receiverID);
 
     }
     public double checkBalance(){

@@ -1,4 +1,4 @@
-package Bill
+package Bill;
 public class WaterBill extends Bill {
   @Override
   public boolean payBill() {

@@ -11,13 +11,13 @@ public class BankAPI implements SourceAPI{
     }
 
     @Override
-    public void withdraw(float Amount) {
-
+    public boolean withdraw(float Amount) {
+return true;
     }
 
     @Override
-    public void deposit(float amount, String recieverId) {
-
+    public boolean deposit(float amount, String recieverId) {
+return true;
     }
 
     @Override
@@ -26,9 +26,15 @@ public class BankAPI implements SourceAPI{
     }
 
     @Override
-    public boolean AttachToAccount(String Id) {
+    public void AttachToAccount(String Id) {
         Random rand =new Random();
         System.out.println("OTP is"+rand.nextInt(100000));
     }
+
+    @Override
+    public boolean checkOtp(String Otp) {
+        return true;
+    }
+
 
 }

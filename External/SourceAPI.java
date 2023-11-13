@@ -2,10 +2,11 @@ package External;
 
 public interface SourceAPI {
     double getBalance(String Id);
-    void  withdraw(float Amount);
-    void deposit(float amount,String recieverId);
+    boolean withdraw(float Amount);
+    boolean deposit(float amount,String recieverId);
     boolean Exists(String Id);
-    boolean AttachToAccount(String Id);
+    void AttachToAccount(String Id);
+    boolean checkOtp(String Otp);
 
 
 }

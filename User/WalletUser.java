@@ -12,7 +12,10 @@ public class WalletUser extends User{
 
         wallet.deposit(amount, wallet.getPhoneNo());
     }
-
+    public WalletUser(String username, String password, String name, String phoneNo, Type type, Wallet wallet) {
+        super(username, password, name, phoneNo, type);
+        this.wallet = wallet;
+    }
     @Override
     public double getBalance() {
         return wallet.checkBalance();

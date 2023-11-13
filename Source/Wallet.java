@@ -19,7 +19,7 @@ public class Wallet {
         WalletAPI endpoint=new WalletAPI();
         return endpoint.getBalance(phoneNo);
     }
-    public String getCardNo(){
+    public String getPhoneNo(){
         return phoneNo;
     }
 }

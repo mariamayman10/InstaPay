@@ -3,8 +3,8 @@ import Source.*;
 public class WalletUser extends User{
     Wallet wallet;
 
-    public WalletUser(String username, String password, String name, String phoneNo, Type type, Wallet wallet) {
-        super(username, password, name, phoneNo, type);
+    public WalletUser(String username, String password, String phoneNo, Type type, Wallet wallet) {
+        super(username, password, phoneNo, type);
         this.wallet = wallet;
     }
 

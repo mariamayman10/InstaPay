@@ -7,15 +7,13 @@ import java.util.ArrayList;
 public abstract class User {
     private final String username;
     private final String password;
-    private final String name;
     private final String phoneNo;
     private final Type type;
     private ArrayList<Transfer> Transfers;
     private ArrayList<Bill> Bills;
-    public User(String username, String password, String name, String phoneNo, Type type) {
+    public User(String username, String password,String phoneNo, Type type) {
         this.username = username;
         this.password = password;
-        this.name = name;
         this.phoneNo = phoneNo;
         this.type = type;
     }
@@ -37,9 +35,6 @@ public abstract class User {
     }
     public String getUsername() {
         return username;
-    }
-    public String getName() {
-        return name;
     }
     public String getPhoneNo() {
         return phoneNo;

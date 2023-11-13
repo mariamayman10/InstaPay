@@ -21,4 +21,7 @@ public class Wallet {
     public String getPhoneNo(){
         return phoneNo;
     }
+    public void setPhoneNo(String phoneNo){
+        this.phoneNo=phoneNo;
+    }
 }

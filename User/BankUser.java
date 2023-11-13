@@ -2,8 +2,8 @@ package User;
 import Source.*;
 public class BankUser extends User{
     Bank bankCard;
-    public BankUser(String username, String password, String name, String phoneNo, Type type, Bank card) {
-        super(username, password, name, phoneNo, type);
+    public BankUser(String username, String password, String phoneNo, Type type, Bank card) {
+        super(username, password,phoneNo, type);
         this.bankCard = card;
     }
 
@@ -26,5 +26,6 @@ public class BankUser extends User{
     public void withdraw(double amount) {
         bankCard.withdraw(amount, bankCard.getCardNo());
     }
+
 
 }

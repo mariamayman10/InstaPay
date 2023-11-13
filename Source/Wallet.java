@@ -5,15 +5,14 @@ import External.WalletAPI;
 public class Wallet {
     private String phoneNo;
 
-    public boolean withdraw(double Amount){
+    public boolean withdraw(double Amount, String senderID){
         WalletAPI endpoint=new WalletAPI();
-        return endpoint.withdraw(Amount,phoneNo);
+        return endpoint.withdraw(Amount, senderID);
 
     }
-    public boolean deposit(double Amount,String RecieverID){
+    public boolean deposit(double Amount, String receiverID){
         WalletAPI endpoint=new WalletAPI();
-        return endpoint.deposit(Amount,RecieverID);
-
+        return endpoint.deposit(Amount,receiverID);
     }
     public double checkBalance(){
         WalletAPI endpoint=new WalletAPI();

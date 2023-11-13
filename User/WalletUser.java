@@ -6,6 +6,12 @@ public class WalletUser extends User{
     void deposit(double amount) {
         this.setBalance(this.getBalance() + amount);
     }
+
+    @Override
+    double getBalance() {
+        return 0;
+    }
+
     @Override
     void withdraw(double amount) {
         this.setBalance(this.getBalance() - amount);

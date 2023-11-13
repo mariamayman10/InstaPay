@@ -4,11 +4,16 @@ public class BankUser extends User{
     Bank bankCard;
     @Override
     void deposit(double amount) {
-        this.setBalance(this.getBalance() + amount);
+        bankCard.deposit(amount,bankCard.getCardNo());
+    }
+
+    @Override
+    double getBalance() {
+        return bankCard.checkBalance();
     }
 
     @Override
     void withdraw(double amount) {
-        this.setBalance(this.getBalance() + amount);
+        bankCard.withdraw(amount);
     }
 }

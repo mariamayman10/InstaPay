@@ -11,13 +11,13 @@ public class BankAPI implements SourceAPI{
     }
 
     @Override
-    public boolean withdraw(float Amount) {
+    public boolean withdraw(double Amount,String SenderID) {
 return true;
     }
 
     @Override
-    public boolean deposit(float amount, String recieverId) {
-return true;
+    public boolean deposit(double amount, String recieverId) {
+        return true;
     }
 
     @Override

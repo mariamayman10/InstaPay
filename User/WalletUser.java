@@ -15,6 +15,6 @@ public class WalletUser extends User{
 
     @Override
     void withdraw(double amount) {
-        wallet.withdraw(amount);
+        wallet.withdraw(amount, wallet.getPhoneNo());
     }
 }

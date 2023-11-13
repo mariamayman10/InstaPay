@@ -5,16 +5,18 @@ import User.User;
 
 import java.util.Random;
 
-public class UtilAPI {
-    /*private UtilAcc CompanyAcc;*/
+public abstract class UtilAPI {
+
+    protected String CompanyAcc;
+    UtilAPI(){
+        Random rand=new Random();
+        CompanyAcc= Integer.toString(rand.nextInt(10000));
+    }
     public float getAmount(String Code){
         Random rand = new Random();
         return rand.nextFloat(1000);
     }
-    public User getAccount(String Code){
-        return UtilAcc;
-    }
-
+    abstract public String getAccount(String Code);
     public void BillPayed(Bill bill){
     }
 }

@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f333695b-7688-47cc-9fd4-6f935baec8ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Transfer/BankTransfer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/External/ElectUtilAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/External/GasUtilAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/External/WaterUtilAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/External/UtilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/UtilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Transfer/Transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transfer/Transfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/BankUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/BankUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/WalletUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/WalletUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,7 @@
       <updated>1699856562698</updated>
       <workItem from="1699856602542" duration="983000" />
       <workItem from="1699860202661" duration="928000" />
-      <workItem from="1699865484302" duration="18269000" />
+      <workItem from="1699865484302" duration="23602000" />
     </task>
     <servers />
   </component>

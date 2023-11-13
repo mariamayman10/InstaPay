@@ -2,19 +2,29 @@ package User;
 import Source.*;
 public class WalletUser extends User{
     Wallet wallet;
+
+    public WalletUser(String username, String password, String name, String phoneNo, Type type) {
+        super(username, password, name, phoneNo, type);
+    }
+
     @Override
-    void deposit(double amount) {
+    public void deposit(double amount) {
 
         wallet.deposit(amount, wallet.getPhoneNo());
     }
 
     @Override
-    double getBalance() {
+    public double getBalance() {
         return wallet.checkBalance();
     }
 
     @Override
-    void withdraw(double amount) {
+    public String getSource() {
+        return wallet.getPhoneNo();
+    }
+
+    @Override
+    public void withdraw(double amount) {
         wallet.withdraw(amount, wallet.getPhoneNo());
     }
 }

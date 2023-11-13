@@ -8,17 +8,23 @@ public class BankUser extends User{
     }
 
     @Override
-    void deposit(double amount) {
+    public void deposit(double amount) {
         bankCard.deposit(amount, bankCard.getCardNo());
     }
 
     @Override
-    double getBalance() {
+    public double getBalance() {
         return bankCard.checkBalance();
     }
 
     @Override
-    void withdraw(double amount) {
+    public String getSource() {
+        return bankCard.getCardNo();
+    }
+
+    @Override
+    public void withdraw(double amount) {
         bankCard.withdraw(amount, bankCard.getCardNo());
     }
+
 }

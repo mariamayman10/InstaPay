@@ -25,9 +25,10 @@ public abstract class User {
     public boolean transfer(Transfer transfer){
         return transfer.transfer();
     }
-    abstract void withdraw(double amount);
-    abstract void deposit(double amount);
-    abstract double getBalance();
+    public abstract void withdraw(double amount);
+    public abstract void deposit(double amount);
+    public abstract double getBalance();
+    public abstract String getSource();
     public ArrayList<Bill> getBills() {
         return Bills;
     }

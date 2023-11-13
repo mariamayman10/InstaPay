@@ -1,3 +1,5 @@
+package Bill;
+
 public class GasBill extends Bill{
     @Override
     public boolean payBill() {

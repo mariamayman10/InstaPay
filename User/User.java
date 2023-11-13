@@ -1,6 +1,9 @@
 package User;
-import Bill.*;
-import Transfer.*;
+import Bill.Bill;
+import Transfer.Transfer;
+
+import java.util.ArrayList;
+
 public abstract class User {
     private String username;
     private String password;
@@ -8,8 +11,8 @@ public abstract class User {
     private String phoneNo;
     private double balance;
     private Type type;
-    private Transfer[] transfers;
-    private Bill[] bills;
+    private ArrayList<Transfer> Transfers;
+    private ArrayList<Bill> Bills;
     public boolean payBill(Bill bill){
         return bill.payBill();
     }
@@ -18,16 +21,14 @@ public abstract class User {
     }
     abstract void withdraw(double amount);
     abstract void deposit(double amount);
-    public double getBalance() {
-        return balance;
-    }
+    abstract double getBalance();
 
-    public void setBalance(double balance) {
+    /*public void setBalance(double balance) {
         this.balance = balance;
-    }
+    }*/
 
-    public Bill[] getBills() {
-        return bills;
+    public ArrayList<Bill> getBills() {
+        return Bills;
     }
     public Type getType() {
         return type;

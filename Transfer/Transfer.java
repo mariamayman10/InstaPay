@@ -3,7 +3,9 @@ import User.*;
 public abstract class Transfer {
     protected double amount;
     protected User sender;
-    public abstract boolean transfer();
+    public boolean transfer(){
+
+    }
     private boolean checkBalance(double amount){
         return true;
     }

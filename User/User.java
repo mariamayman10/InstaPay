@@ -1,14 +1,14 @@
 package User;
 import Bill.Bill;
 import Transfer.Transfer;
-
+import User.*;
 import java.util.ArrayList;
 
 public abstract class User {
     private final String username;
     private final String password;
     private final String phoneNo;
-    private final Type type;
+    private Type type;
     private ArrayList<Transfer> Transfers;
     private ArrayList<Bill> Bills;
     public User(String username, String password,String phoneNo, Type type) {
@@ -41,5 +41,8 @@ public abstract class User {
     }
     public String getPassword() {
         return password;
+    }
+    public void setType(Type type) {
+        this.type = type;
     }
 }

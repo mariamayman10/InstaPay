@@ -1,8 +1,10 @@
 package External;
 
+import User.User;
+
 public class GasUtilAPI extends UtilAPI{
     @Override
-    public String getAccount(String Code) {
-        return "GU"+CompanyAcc;
+    public User getAccount(String Code) {
+        return null;
     }
 }

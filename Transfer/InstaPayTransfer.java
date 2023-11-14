@@ -3,16 +3,11 @@ package Transfer;
 import User.User;
 
 public class InstaPayTransfer extends Transfer{
-    private User Reciever;
+    private final User receiver;
 
-    InstaPayTransfer(double Amount, User Sender,User reciever) {
+    public InstaPayTransfer(double Amount, User Sender,User receiver) {
         super(Amount, Sender);
-        Reciever=reciever;
-    }
-
-    @Override
-    boolean checkBalance() {
-        return sender.getBalance()>amount;
+        this.receiver = receiver;
     }
 
     @Override
@@ -23,7 +18,7 @@ public class InstaPayTransfer extends Transfer{
 
     @Override
     boolean sendFunds() {
-        Reciever.deposit(amount);
+        receiver.deposit(amount);
         return true;
     }
 }

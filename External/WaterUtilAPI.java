@@ -1,12 +1,10 @@
 package External;
-import User.WalletUser;
-
-import java.util.Random;
+import User.User;
 
 public class WaterUtilAPI extends UtilAPI{
 
     @Override
-    public String getAccount(String Code) {
-        return "WU"+CompanyAcc;
+    public User getAccount(String Code) {
+        return null;
     }
 }

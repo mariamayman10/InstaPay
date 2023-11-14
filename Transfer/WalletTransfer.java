@@ -1,21 +1,15 @@
 package Transfer;
 
-import External.BankAPI;
-import External.WalletAPI;
+import External.*;
 import User.User;
 
 public class WalletTransfer extends Transfer{
 
-    private String PhoneNum;
-    WalletTransfer(double Amount, User Sender,String Reciever) {
+    private final String phoneNo;
+    public WalletTransfer(double Amount, User Sender,String receiver) {
         super(Amount, Sender);
-        PhoneNum=Reciever;
+        phoneNo = receiver;
 
-    }
-
-    @Override
-    boolean checkBalance() {
-        return sender.getBalance()>amount;
     }
 
     @Override
@@ -27,6 +21,6 @@ public class WalletTransfer extends Transfer{
     @Override
     boolean sendFunds() {
         WalletAPI endpoint=new WalletAPI();
-        return endpoint.withdraw(amount,sender.getSource());
+        return endpoint.withdraw(amount,phoneNo);
     }
 }

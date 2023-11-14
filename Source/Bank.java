@@ -21,8 +21,8 @@ public class Bank {
     public String getCardNo(){
         return cardNo;
     }
-    public void setPhoneNo(String phoneNo){
-        this.phoneNo=phoneNo;
+    public void setCardNo(String cardNo){
+        this.cardNo = cardNo;
     }
 
 }

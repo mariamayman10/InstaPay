@@ -16,14 +16,16 @@ public abstract class Transfer {
     }
 
     public boolean transfer(){
-if(checkBalance()){
-    withdraw();
-    return sendFunds();
-}
-return false;
+        if(checkBalance()){
+            withdraw();
+            return sendFunds();
+        }
+        return false;
     }
 
-    abstract boolean checkBalance();
-   abstract boolean withdraw();
+    protected boolean checkBalance(){
+        return sender.getBalance() > amount;
+    }
+    abstract boolean withdraw();
     abstract boolean sendFunds();
 }

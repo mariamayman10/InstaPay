@@ -6,13 +6,12 @@ import java.util.Scanner;
 import User.*;
 
 public class AuthenticationService {
-    private List<User> userList;
+    private final List<User> userList;
     public AuthenticationService() {
         userList = new ArrayList<>();
     }
     public void addUser(User user) {
         userList.add(user);
-
     }
     public User logIn(String username, String password) {
         for (User user : userList) {
@@ -29,7 +28,7 @@ public class AuthenticationService {
         System.out.println("OTP sent to " + phoneNumber + ": " + otp);
         System.out.println("Enter The Otp Code :" );
         int OTP =scanner.nextInt();
-        if(otp==OTP){
+        if(otp == OTP){
             return true;
         }
         return false;

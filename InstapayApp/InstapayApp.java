@@ -1,4 +1,5 @@
 package InstapayApp;
+import Bill.*;
 import Source.Bank;
 import Source.Wallet;
 import User.*;
@@ -11,6 +12,7 @@ class Instapy {
     Wallet wallet = new Wallet();
     private final WalletAPI api = new WalletAPI();
     private final BankAPI apib = new BankAPI();
+
     private final AuthenticationService authService = new AuthenticationService();
 
     private User user;
@@ -93,10 +95,28 @@ class Instapy {
 
     }
 
-    public void checkBalance() {
+    public void checkBalance(User user) {
+        System.out.println("Your Balance "+user.getBalance());
 
     }
+    public void payBill(User user){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select bill type to pay:");
+        System.out.println("1. Water Bill");
+        System.out.println("2. Gas Bill");
+        System.out.println("3. Electric Bill");
+        int billType = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter the code ");
+        String code=scanner.nextLine();
+        System.out.println("Enter the amount ");
+        double amount =scanner.nextDouble();
+        if(billType==1){
+//            WaterBill bill=new WaterBill(amount,code,user);
+//            user.payBill(bill);
+        }
 
+    }
     public void showSystem() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -119,12 +139,14 @@ class Instapy {
                                     c = scanner.nextInt();
                                     switch (c) {
                                         case 1:
-
+                                            payBill(user);
                                             break;
                                         case 2:
 
+
                                             break;
                                         case 3:
+                                            checkBalance(user);
 
                                             break;
                                         case 4:

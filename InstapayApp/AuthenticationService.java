@@ -28,10 +28,7 @@ public class AuthenticationService {
         System.out.println("OTP sent to " + phoneNumber + ": " + otp);
         System.out.println("Enter The Otp Code :" );
         int OTP =scanner.nextInt();
-        if(otp == OTP){
-            return true;
-        }
-        return false;
+         return otp == OTP;
 
     }
     public User searchUser(String username) {

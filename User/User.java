@@ -41,6 +41,7 @@ public abstract class User {
     public abstract void withdraw(double amount);
     public abstract void deposit(double amount);
     public abstract double getBalance();
+    public abstract String getSource();
     public ArrayList<Bill> getBills() {
         return Bills;
     }

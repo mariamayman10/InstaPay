@@ -41,8 +41,14 @@ public class  InstaPay {
     }
     public void signUpUser() throws ParseException {
         Scanner scanner = new Scanner(System.in);
+        String phoneRegex = "^[0-9]{11}$";
         System.out.println("Enter The mobile number  : ");
         String phoneNumber = scanner.nextLine();
+        while (!phoneNumber.matches(phoneRegex)) {
+            System.out.println("Invalid phone number.");
+            System.out.println("Enter The mobile number  : ");
+            phoneNumber = scanner.nextLine();
+        }
         while(!authService.sendOtp(phoneNumber)){
             System.out.println("The OTP is wrong");
         }
@@ -126,7 +132,7 @@ public class  InstaPay {
         }
         else if(billType == 2){
             GasUtilAPI gasUtilAPI = new GasUtilAPI();
-            Bill gasBill = new ElectBill( code);
+            Bill gasBill = new GasBill( code);
             gasBill.setComp(gasUtilAPI);
             user.payBill(gasBill);
 

@@ -3,6 +3,8 @@ package Bill;
 import User.User;
 
 public class GasBill extends Bill{
+    private long CubicMetre ;
+    private float gasTax;
     public GasBill(double amount, String code, String receiver){
         super(amount, code, receiver);
     }

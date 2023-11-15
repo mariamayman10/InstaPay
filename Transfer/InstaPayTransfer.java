@@ -2,29 +2,24 @@ package Transfer;
 
 import User.User;
 
-public class InstaPayTransfer extends Transfer{
+public class InstaPayTransfer implements TransferStrategy{
     private final User receiver;
 
-    public InstaPayTransfer(double Amount, User Sender,User receiver) {
-        super(Amount, Sender);
+    public InstaPayTransfer( User receiver) {
         this.receiver = receiver;
     }
 
     @Override
-    boolean withdraw() {
-        sender.withdraw(amount);
+    public boolean transfer(double amount) {
+        receiver.deposit(amount);
+        //
         return true;
     }
 
-    @Override
-    boolean sendFunds() {
-        receiver.deposit(amount);
-        receiver.AddTransfer(this);
-        return true;
-    }
+
 
     @Override
     public void printtrans() {
-        System.out.print("InstapayTransfer\nAmount : "+amount+"\nReciever : "+receiver.getUsername());
+        System.out.print("InstapayTransfer\nReceiver : "+receiver.getUsername());
     }
 }

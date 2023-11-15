@@ -144,8 +144,10 @@ public class  InstaPay {
         }
         int transferType = scanner.nextInt();
         scanner.nextLine();
-
-        double amount;
+        System.out.println("Enter amount you want to send: ");
+        double amount = scanner.nextDouble();
+        Transfer MyTransfer = new Transfer(amount, user);
+        TransferStrategy strategy = null;
         if(transferType == 1){
             String username;
             User receiver;
@@ -155,10 +157,7 @@ public class  InstaPay {
             if(receiver == null)
                 System.out.println("No such account");
             else{
-                System.out.println("Enter amount you want to send: ");
-                amount = scanner.nextDouble();
-                Transfer instaPayTransfer = new InstaPayTransfer(amount, user, receiver);
-               user.transfer(instaPayTransfer);
+                strategy=new InstaPayTransfer(receiver);
             }
         }
         else if(transferType == 2){
@@ -169,10 +168,8 @@ public class  InstaPay {
             if(!check)
                 System.out.println("No such wallet");
             else{
-                System.out.println("Enter amount you want to send: ");
-                amount = scanner.nextDouble();
-                Transfer walletTransfer = new WalletTransfer(amount, user, receiver);
-                boolean ret = user.transfer(walletTransfer);
+                strategy= new WalletTransfer(receiver);
+
             }
         }
         else if(transferType == 3 && user.getType() == Type.Bank){
@@ -183,15 +180,15 @@ public class  InstaPay {
             if(!check)
                 System.out.println("No such a bank account");
             else{
-                System.out.println("Enter amount you want to send: ");
-                amount = scanner.nextDouble();
-                Transfer bankTransfer = new BankTransfer(amount, user, receiver);
-                boolean ret = user.transfer(bankTransfer);
+                strategy = new BankTransfer(receiver);
             }
         }
         else{
             System.out.println("Invalid Choice");
         }
+        MyTransfer.SetTransferStrategy(strategy);
+        MyTransfer.transfer();
+        user.AddTransfer(MyTransfer);
     }
     public void showSystem() {
         Scanner scanner = new Scanner(System.in);

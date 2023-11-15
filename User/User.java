@@ -10,6 +10,11 @@ public abstract class User {
     private final String phoneNo;
     private Type type;
     private final ArrayList<Transfer> Transfers;
+
+    public ArrayList<Transfer> getRecieved() {
+        return Recieved;
+    }
+
     private final ArrayList<Transfer> Recieved;
     private final ArrayList<Bill> Bills;
     public User(String username, String password,String phoneNo, Type type) {
@@ -24,21 +29,17 @@ public abstract class User {
     }
     public boolean payBill(Bill bill){
         if(bill.getAmount()<getBalance()){
-            WalletTransfer utilTran = new WalletTransfer(bill.getAmount(),this,bill.getReceiver());
-            if(utilTran.transfer()){
+            Transfer utiltran=new Transfer(bill.getAmount(),this);
+            WalletTransfer utilTrans = new WalletTransfer(bill.getReceiver());
+            utiltran.SetTransferStrategy(utilTrans);
+            if(utiltran.transfer()){
                 Bills.add(bill);
                 return bill.payBill();
             }
         }
         return false;
     }
-    public boolean transfer(Transfer transfer){
-        boolean ret = transfer.transfer();
-        if(transfer.transfer()){
-            AddTransfer(transfer);
-        }
-        return ret;
-    }
+
     public abstract void withdraw(double amount);
     public abstract void deposit(double amount);
     public abstract double getBalance();

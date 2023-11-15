@@ -3,29 +3,21 @@ package Transfer;
 import External.*;
 import User.User;
 
-public class WalletTransfer extends Transfer{
+public class WalletTransfer implements TransferStrategy{
 
     private final String phoneNo;
-    public WalletTransfer(double Amount, User Sender,String receiver) {
-        super(Amount, Sender);
+    public WalletTransfer(String receiver) {
         phoneNo = receiver;
 
     }
-
     @Override
-    boolean withdraw() {
-        sender.withdraw(amount);
-        return true;
-    }
-
-    @Override
-    boolean sendFunds() {
+    public boolean transfer(double amount) {
         WalletAPI endpoint=new WalletAPI();
         return endpoint.deposit(amount,phoneNo);
     }
 
     @Override
     public void printtrans() {
-        System.out.print("WalletTransfer\nAmount : "+amount+"\nReciever : "+phoneNo+"\n");
+        System.out.print("WalletTransfer\nReciever : "+phoneNo+"\n");
     }
 }

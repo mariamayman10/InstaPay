@@ -3,6 +3,8 @@ package Bill;
 import User.User;
 
 public class ElectBill extends Bill {
+    private long Kwatts;
+    private  float ElectTax;
     public ElectBill(double amount, String code, String receiver){
         super(amount, code, receiver);
     }

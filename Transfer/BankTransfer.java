@@ -3,28 +3,22 @@ package Transfer;
 import External.BankAPI;
 import User.User;
 
-public class BankTransfer extends Transfer{
+public class BankTransfer implements TransferStrategy{
 
     private final String bankAcc;
-    public BankTransfer(double Amount, User sender,String receiver) {
-        super(Amount, sender);
+    public BankTransfer(String receiver) {
         bankAcc = receiver;
     }
 
-    @Override
-    boolean withdraw() {
-        sender.withdraw(amount);
-        return true;
-    }
 
     @Override
-    boolean sendFunds() {
+    public boolean transfer(double amount) {
         BankAPI endpoint=new BankAPI();
         return endpoint.deposit(amount,bankAcc);
     }
 
     @Override
     public void printtrans() {
-        System.out.print("Bank Transfer\nAmount : "+amount+"\nReceiver : "+bankAcc+"\n");
+        System.out.print("Bank Transfer\nReceiver : "+bankAcc+"\n");
     }
 }

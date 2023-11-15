@@ -5,30 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f333695b-7688-47cc-9fd4-6f935baec8ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/InstaPayAppMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bill/BillStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transfer/TransferStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bill/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/Bill/Bill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bill/ElectBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/Bill/ElectBill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bill/GasBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/Bill/GasBill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bill/WaterBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/Bill/WaterBill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/BankAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/BankAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/ElectUtilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/ElectUtilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/GasUtilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/GasUtilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/UtilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/UtilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/WalletAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/WalletAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/External/WaterUtilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/External/WaterUtilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstapayApp/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/InstapayApp/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InstapayApp/InstaPay.java" beforeDir="false" afterPath="$PROJECT_DIR$/InstapayApp/InstaPay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transfer/BankTransfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transfer/BankTransfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transfer/InstaPayTransfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transfer/InstaPayTransfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transfer/Transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transfer/Transfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transfer/WalletTransfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transfer/WalletTransfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/BankUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/BankUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/WalletUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/User/WalletUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -89,7 +77,8 @@
       <workItem from="1699865484302" duration="23761000" />
       <workItem from="1699900421953" duration="7000" />
       <workItem from="1699966411384" duration="1387000" />
-      <workItem from="1699981799580" duration="14866000" />
+      <workItem from="1699981799580" duration="15115000" />
+      <workItem from="1700056361645" duration="8827000" />
     </task>
     <servers />
   </component>

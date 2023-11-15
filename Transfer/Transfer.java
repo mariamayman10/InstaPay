@@ -1,10 +1,11 @@
 package Transfer;
 import User.*;
-public abstract class Transfer {
+public  class Transfer {
     protected double amount;
     protected User sender;
+    private TransferStrategy ts;
 
-    Transfer(double amount,User sender) {
+    public Transfer(double amount,User sender) {
         this.amount = amount;
         this.sender = sender ;
     }
@@ -16,9 +17,9 @@ public abstract class Transfer {
     }
 
     public boolean transfer(){
-        if(checkBalance(this.amount)){
-            withdraw();
-            return sendFunds();
+        if(sender.getBalance()>amount){
+            sender.withdraw(amount);
+            return ts.transfer(amount);
         }
         else{
             System.out.println("No enough balance...");
@@ -26,10 +27,11 @@ public abstract class Transfer {
         }
     }
 
-    protected boolean checkBalance(double amount){
-        return sender.getBalance() >= amount;
+    public void SetTransferStrategy(TransferStrategy strategy){
+        ts=strategy;
     }
-    abstract boolean withdraw();
-    abstract boolean sendFunds();
-    public abstract void printtrans();
+    public void printtrans(){
+        ts.printtrans();
+        System.out.println("Amount : "+amount);
+    }
 }

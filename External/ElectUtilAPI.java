@@ -1,8 +1,12 @@
 package External;
 import User.*;
 public class ElectUtilAPI extends UtilAPI{
+
+    public ElectUtilAPI(){
+        super();
+    }
     @Override
-    public User getAccount(String Code) {
-        return null;
+    public String getAccount(String Code) {
+        return CompanyAcc;
     }
 }

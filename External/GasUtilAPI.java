@@ -3,8 +3,11 @@ package External;
 import User.User;
 
 public class GasUtilAPI extends UtilAPI{
+    public GasUtilAPI(){
+        super();
+    }
     @Override
-    public User getAccount(String Code) {
-        return null;
+    public String getAccount(String Code) {
+        return CompanyAcc;
     }
 }

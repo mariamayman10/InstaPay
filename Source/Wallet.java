@@ -1,27 +1,31 @@
 package Source;
 
+
 import External.WalletAPI;
 
 public class Wallet {
     private String phoneNo;
+    private double balance;
 
-    public boolean withdraw(double Amount, String senderID){
+    public Wallet(String phone){
+        phoneNo=phone;
         WalletAPI endpoint=new WalletAPI();
-        return endpoint.withdraw(Amount, senderID);
-
+        balance =endpoint.getBalance(phoneNo);
     }
-    public boolean deposit(double Amount, String receiverID){
-        WalletAPI endpoint=new WalletAPI();
-        return endpoint.deposit(Amount,receiverID);
+
+    public boolean withdraw(double Amount){
+        balance-=Amount;
+return true;
+    }
+    public boolean deposit(double Amount){
+       balance+=Amount;
+       return true;
     }
     public double checkBalance(){
-        WalletAPI endpoint=new WalletAPI();
-        return endpoint.getBalance(phoneNo);
+        return balance;
     }
     public String getPhoneNo(){
         return phoneNo;
     }
-    public void setPhoneNo(String phoneNo){
-        this.phoneNo=phoneNo;
-    }
+
 }

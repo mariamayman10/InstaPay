@@ -11,7 +11,7 @@ public class WalletUser extends User{
     @Override
     public void deposit(double amount) {
 
-        wallet.deposit(amount, wallet.getPhoneNo());
+        wallet.deposit(amount);
     }
     @Override
     public double getBalance() {
@@ -25,6 +25,6 @@ public class WalletUser extends User{
 
     @Override
     public void withdraw(double amount) {
-        wallet.withdraw(amount, wallet.getPhoneNo());
+        wallet.withdraw(amount);
     }
 }

@@ -3,20 +3,21 @@ import Bill.*;
 import Source.*;
 import Transfer.*;
 import User.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import External.*;
 import java.util.InputMismatchException;
-public class InstaPay {
-    private final Bank cardBank;
-    private final Wallet wallet;
+public class  InstaPay {
+
     private final WalletAPI walletAPI;
     private final BankAPI bankAPI;
     private final AuthenticationService authService;
     private User user;
 
     public InstaPay(){
-        cardBank = new Bank();
-        wallet = new Wallet();
         bankAPI = new BankAPI();
         walletAPI = new WalletAPI();
         authService = new AuthenticationService();
@@ -40,66 +41,83 @@ public class InstaPay {
         user = users;
         System.out.println("Welcome, " + user.getUsername() + "\nThe phone number " + user.getPhoneNo() + "\nYour Type " + user.getType());
     }
-
-    public void signUpUser() {
+    private boolean getUsername(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("1. Sign-up with wallet number ");
-        System.out.println("2. Sign-Up with bank account ");
-        int op = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Enter  Username: ");
+        String username = scanner.nextLine();
+        user = authService.searchUser(username);
+        return user==null;
+    }
 
+
+    public void signUpUser() throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+        boolean fieldvalidation=false;
         System.out.println("Enter The mobile number  : ");
         String phoneNumber = scanner.nextLine();
-        String cardNo;
-        Type userType;
-        if (op == 1) {
-            if (!walletAPI.Exists(phoneNumber)) {
-                System.out.println("Invalid wallet account");
-            }
-            wallet.setPhoneNo(phoneNumber);
-            userType = Type.Wallet;
+        while(!authService.sendOtp(phoneNumber)){
+            System.out.println("The OTP is wrong");
+            //authService.sendOtp(phoneNumber);
         }
-        else if (op == 2) {
-            System.out.println("Enter Your Card bank");
-            cardNo = scanner.nextLine();
-            if (!bankAPI.Exists(cardNo)) {
-                System.out.println("Invalid bank account");
-                return;
-            }
-            cardBank.setCardNo(cardNo);
-            userType = Type.Bank;
-        } else {
-            System.out.println("Invalid Option");
-            return;
-        }
-        if (authService.sendOtp(phoneNumber)) {
-            System.out.println("Enter The Username: ");
-            String username = scanner.nextLine();
-            user = authService.searchUser(username);
-            if (user == null) {
-                System.out.println("Enter The Strong password: ");
-                String password = scanner.nextLine();
-                if (password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
-                    User newUser;
-                    if (userType == Type.Wallet) {
 
+
+            System.out.println("Enter  Username: ");
+            String username = scanner.nextLine();
+            while(authService.searchUser(username)!=null) {
+                System.out.println("Username already exists.");
+                System.out.println("Enter  Username: ");
+                username = scanner.nextLine();
+            }
+            System.out.println("Enter Strong password: ");
+                String password = scanner.nextLine();
+                while(!password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
+                    System.out.println("Weak Password.");
+                    password = scanner.nextLine();
+                }
+                    User newUser;
+                    System.out.println("1. Sign-up with wallet number ");
+                    System.out.println("2. Sign-Up with bank account ");
+                    int op = scanner.nextInt();
+                    scanner.nextLine();
+                    String cardNo;
+                    Type userType;
+                    if (op == 1) {
+                        if(!walletAPI.Exists(phoneNumber)) {
+                            System.out.println("Invalid wallet account");
+                        }
+                        Wallet wallet=new Wallet(phoneNumber);
+                        userType = Type.Wallet;
                         newUser = new WalletUser(username, password, phoneNumber, userType, wallet);
-                    } else{
-                        newUser = new BankUser(username, password, phoneNumber, userType, cardBank);
+                    }
+                    else if (op == 2) {
+                        System.out.println("Enter Your Card bank");
+                        cardNo = scanner.nextLine();
+                        System.out.println("Enter Your Card expiration date MM/YY format");
+                        String exp = scanner.nextLine();
+                        Date date1=new SimpleDateFormat("MM/yy").parse(exp);
+                        if (!bankAPI.Exists(cardNo)) {
+                            System.out.println("Invalid bank account");
+                            return;
+                        }
+                        Bank card=new Bank(cardNo,date1);
+                        userType = Type.Bank;
+                        newUser = new BankUser(username, password, phoneNumber, userType, card);
+                    } else {
+                        System.out.println("Invalid Option");
+                        return;
                     }
                     authService.addUser(newUser);
-                    System.out.println("Sign-up successful");
-                } else {
-                    System.out.println("Weak Password.");
-                }
-            } else {
-                System.out.println("Username already exists.");
-            }
-        } else {
-            System.out.println("The OTP is wrong");
-        }
 
-    }
+
+                }
+
+
+
+
+
+
+
+
 
     public void checkBalance(User user) {
         System.out.println("Your Balance " + user.getBalance());
@@ -116,27 +134,21 @@ public class InstaPay {
         System.out.println("Enter the code: ");
         String code = scanner.nextLine();
 
-        double amount;
-        User receiver;
+
+
         if(billType == 1){
             WaterUtilAPI waterUtilAPI = new WaterUtilAPI();
-            amount = waterUtilAPI.getAmount(code);
-            receiver = waterUtilAPI.getAccount(code);
-            Bill waterBill = new WaterBill(amount, code, receiver);
+            Bill waterBill = new WaterBill(waterUtilAPI.getAmount(code), code,waterUtilAPI.getAccount(code) );
             user.payBill(waterBill);
         }
         else if(billType == 2){
             GasUtilAPI gasUtilAPI = new GasUtilAPI();
-            amount = gasUtilAPI.getAmount(code);
-            receiver = gasUtilAPI.getAccount(code);
-            Bill gasBill = new GasBill(amount, code, receiver);
+            Bill gasBill = new GasBill(gasUtilAPI.getAmount(code), code, gasUtilAPI.getAccount(code));
             user.payBill(gasBill);
         }
         else if(billType == 3){
             ElectUtilAPI electUtilAPI = new ElectUtilAPI();
-            amount = electUtilAPI.getAmount(code);
-            receiver = electUtilAPI.getAccount(code);
-            Bill electBill = new ElectBill(amount, code, receiver);
+            Bill electBill = new ElectBill(electUtilAPI.getAmount(code), code,electUtilAPI.getAccount(code) );
             user.payBill(electBill);
         }
         else{
@@ -162,7 +174,7 @@ public class InstaPay {
             username = scanner.nextLine();
             receiver = authService.searchUser(username);
             if(receiver == null)
-                System.out.println("No such an account");
+                System.out.println("No such account");
             else{
                 System.out.println("Enter amount you want to send: ");
                 amount = scanner.nextDouble();
@@ -176,7 +188,7 @@ public class InstaPay {
             receiver = scanner.nextLine();
             boolean check = walletAPI.Exists(receiver);
             if(!check)
-                System.out.println("No such a wallet");
+                System.out.println("No such wallet");
             else{
                 System.out.println("Enter amount you want to send: ");
                 amount = scanner.nextDouble();
@@ -218,7 +230,8 @@ public class InstaPay {
                                 System.out.println("1. Pay Bill");
                                 System.out.println("2. Transfer Money");
                                 System.out.println("3. Check Balance");
-                                System.out.println("4. Sign Out");
+                                System.out.println("4. View Transactions");
+                                System.out.println("5. Sign Out");
                                 int c;
                                 try {
                                     c = scanner.nextInt();
@@ -226,7 +239,17 @@ public class InstaPay {
                                         case 1 -> payBill();
                                         case 2 -> transfer();
                                         case 3 -> checkBalance(user);
-                                        case 4 -> {
+                                        case 4->{
+                                            System.out.println("Transfers");
+                                            for(Transfer t:user.getTransfers()){
+                                                t.printtrans();
+                                            }
+                                            System.out.println("Bills");
+                                            for(Bill b:user.getBills()){
+                                                b.PrintBill();
+                                            }
+                                        }
+                                        case 5 -> {
                                             System.out.println("Signing out.");
                                             user = null;
                                             return;
@@ -249,6 +272,8 @@ public class InstaPay {
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
                 scanner.nextLine();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
             }
         }
     }

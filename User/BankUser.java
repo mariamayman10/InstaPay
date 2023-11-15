@@ -9,7 +9,7 @@ public class BankUser extends User{
 
     @Override
     public void deposit(double amount) {
-        bankCard.deposit(amount, bankCard.getCardNo());
+        bankCard.deposit(amount);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BankUser extends User{
 
     @Override
     public void withdraw(double amount) {
-        bankCard.withdraw(amount, bankCard.getCardNo());
+        bankCard.withdraw(amount);
     }
 
 

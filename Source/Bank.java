@@ -4,25 +4,29 @@ import External.BankAPI;
 public class Bank {
     private String cardNo;
     private Date expDate;
-    public boolean withdraw(double amount, String senderID){
-        BankAPI endpoint=new BankAPI();
-        return endpoint.withdraw(amount, senderID);
+    private double balance;
 
-    }
-    public boolean deposit(double Amount, String receiverID){
+    public Bank(String cardno, Date expd){
+        cardNo=cardno;
+        expDate=expd;
         BankAPI endpoint=new BankAPI();
-        return endpoint.deposit(Amount, receiverID);
+        balance =endpoint.getBalance(cardNo);
+    }
+    public boolean withdraw(double amount){
+        balance-=amount;
+return true;
+    }
+    public boolean deposit(double Amount){
+       balance+=Amount;
+       return true;
 
     }
     public double checkBalance(){
-        BankAPI endpoint=new BankAPI();
-        return endpoint.getBalance(cardNo);
+        return balance;
     }
     public String getCardNo(){
         return cardNo;
     }
-    public void setCardNo(String cardNo){
-        this.cardNo = cardNo;
-    }
+
 
 }

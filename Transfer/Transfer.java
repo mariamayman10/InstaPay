@@ -28,4 +28,5 @@ public abstract class Transfer {
     }
     abstract boolean withdraw();
     abstract boolean sendFunds();
+    public abstract void printtrans();
 }

@@ -14,9 +14,10 @@ public abstract class UtilAPI {
     }
     public double getAmount(String Code){
         Random rand = new Random();
-        return rand.nextDouble(1000);
+        return rand.nextDouble(100);
     }
-    abstract public User getAccount(String Code);
+    abstract public String getAccount(String Code);
     public void BillPayed(Bill bill){
+
     }
 }

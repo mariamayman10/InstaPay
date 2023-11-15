@@ -19,6 +19,12 @@ public class InstaPayTransfer extends Transfer{
     @Override
     boolean sendFunds() {
         receiver.deposit(amount);
+        receiver.AddTransfer(this);
         return true;
+    }
+
+    @Override
+    public void printtrans() {
+        System.out.print("InstapayTransfer\nAmount : "+amount+"\nReciever : "+receiver.getUsername());
     }
 }

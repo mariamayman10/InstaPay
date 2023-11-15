@@ -13,13 +13,18 @@ public class BankTransfer extends Transfer{
 
     @Override
     boolean withdraw() {
-        BankAPI endpoint=new BankAPI();
-        return endpoint.withdraw(amount,sender.getSource());
+        sender.withdraw(amount);
+        return true;
     }
 
     @Override
     boolean sendFunds() {
         BankAPI endpoint=new BankAPI();
         return endpoint.deposit(amount,bankAcc);
+    }
+
+    @Override
+    public void printtrans() {
+        System.out.print("BankpayTransfer\nAmount : "+amount+"\nReciever : "+bankAcc+"\n");
     }
 }

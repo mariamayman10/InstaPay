@@ -3,12 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+
+import Source.Wallet;
 import User.*;
 
 public class AuthenticationService {
     private final List<User> userList;
     public AuthenticationService() {
         userList = new ArrayList<>();
+        Wallet wall=new Wallet("345678");
+        WalletUser user1=new WalletUser("user1","234567","3456789",Type.Wallet,wall);
+        userList.add(user1);
     }
     public void addUser(User user) {
         userList.add(user);

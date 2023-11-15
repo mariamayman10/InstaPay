@@ -7,7 +7,7 @@ public class WalletAPI implements SourceAPI{
     @Override
     public double getBalance(String Id) {
         Random rand=new Random();
-        return rand.nextDouble(1000);
+        return rand.nextDouble(100000);
     }
 
     @Override

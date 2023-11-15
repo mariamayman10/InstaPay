@@ -21,6 +21,11 @@ public class WalletTransfer extends Transfer{
     @Override
     boolean sendFunds() {
         WalletAPI endpoint=new WalletAPI();
-        return endpoint.withdraw(amount,phoneNo);
+        return endpoint.deposit(amount,phoneNo);
+    }
+
+    @Override
+    public void printtrans() {
+        System.out.print("WalletTransfer\nAmount : "+amount+"\nReciever : "+phoneNo+"\n");
     }
 }

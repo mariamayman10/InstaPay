@@ -83,7 +83,14 @@ public class  InstaPay {
         }
         else if (op == 2) {
             System.out.println("Enter Your Card bank");
-            cardNo = scanner.nextLine();
+            while (true) {
+                cardNo = scanner.nextLine();
+                if (cardNo.matches("\\d+")) {
+                    break;
+                }else {
+                System.out.println("Invalid card number. Please enter a card number containing only digits.");
+            }
+        }
             System.out.println("Enter Your Card expiration date MM/YY format");
             Date date1;
             while (true) {

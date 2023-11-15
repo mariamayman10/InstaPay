@@ -35,6 +35,4 @@ public class WalletAPI implements SourceAPI{
     public boolean checkOtp(String Otp) {
         return true;
     }
-
-
 }

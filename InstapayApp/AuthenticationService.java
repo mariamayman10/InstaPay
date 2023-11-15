@@ -1,9 +1,9 @@
 package InstapayApp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import Source.Bank;
 import Source.Wallet;
 import User.*;
 
@@ -11,9 +11,6 @@ public class AuthenticationService {
     private final List<User> userList;
     public AuthenticationService() {
         userList = new ArrayList<>();
-        Wallet wall=new Wallet("345678");
-        WalletUser user1=new WalletUser("user1","234567","3456789",Type.Wallet,wall);
-        userList.add(user1);
     }
     public void addUser(User user) {
         userList.add(user);
@@ -29,7 +26,7 @@ public class AuthenticationService {
     public boolean sendOtp(String phoneNumber){
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int otp = random.nextInt(1000);
+        int otp = random.nextInt(100, 999);
         System.out.println("OTP sent to " + phoneNumber + ": " + otp);
         System.out.println("Enter The Otp Code :" );
         int OTP =scanner.nextInt();

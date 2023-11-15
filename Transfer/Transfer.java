@@ -4,9 +4,9 @@ public abstract class Transfer {
     protected double amount;
     protected User sender;
 
-    Transfer(double Amount,User Sender) {
-        amount = Amount;
-        sender = Sender ;
+    Transfer(double amount,User sender) {
+        this.amount = amount;
+        this.sender = sender ;
     }
     public User getSender() {
         return sender;
@@ -16,15 +16,18 @@ public abstract class Transfer {
     }
 
     public boolean transfer(){
-        if(checkBalance()){
+        if(checkBalance(this.amount)){
             withdraw();
             return sendFunds();
         }
-        return false;
+        else{
+            System.out.println("No enough balance...");
+            return false;
+        }
     }
 
-    protected boolean checkBalance(){
-        return sender.getBalance() > amount;
+    protected boolean checkBalance(double amount){
+        return sender.getBalance() >= amount;
     }
     abstract boolean withdraw();
     abstract boolean sendFunds();

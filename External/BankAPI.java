@@ -6,7 +6,7 @@ public class BankAPI implements SourceAPI{
 
     @Override
     public double getBalance(String Id) {
-        Random rand=new Random();
+        Random rand = new Random();
         return rand.nextDouble(100000);
     }
 
@@ -35,6 +35,4 @@ public class BankAPI implements SourceAPI{
     public boolean checkOtp(String Otp) {
         return true;
     }
-
-
 }

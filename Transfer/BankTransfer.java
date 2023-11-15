@@ -25,6 +25,6 @@ public class BankTransfer extends Transfer{
 
     @Override
     public void printtrans() {
-        System.out.print("BankpayTransfer\nAmount : "+amount+"\nReciever : "+bankAcc+"\n");
+        System.out.print("Bank Transfer\nAmount : "+amount+"\nReceiver : "+bankAcc+"\n");
     }
 }

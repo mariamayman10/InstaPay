@@ -6,20 +6,19 @@ public class Bank {
     private Date expDate;
     private double balance;
 
-    public Bank(String cardno, Date expd){
-        cardNo=cardno;
-        expDate=expd;
+    public Bank(String card, Date date){
+        cardNo = card;
+        expDate = date;
         BankAPI endpoint=new BankAPI();
         balance =endpoint.getBalance(cardNo);
     }
     public boolean withdraw(double amount){
-        balance-=amount;
-return true;
+        balance -= amount;
+        return true;
     }
     public boolean deposit(double Amount){
        balance+=Amount;
        return true;
-
     }
     public double checkBalance(){
         return balance;

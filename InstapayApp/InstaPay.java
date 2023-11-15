@@ -119,18 +119,21 @@ public class  InstaPay {
 
         if(billType == 1){
             WaterUtilAPI waterUtilAPI = new WaterUtilAPI();
-            Bill waterBill = new WaterBill(waterUtilAPI.getAmount(code), code,waterUtilAPI.getAccount(code) );
+            Bill waterBill = new WaterBill(code);
             user.payBill(waterBill);
+            user.AddBill(waterBill);
         }
         else if(billType == 2){
             GasUtilAPI gasUtilAPI = new GasUtilAPI();
-            Bill gasBill = new GasBill(gasUtilAPI.getAmount(code), code, gasUtilAPI.getAccount(code));
+            Bill gasBill = new ElectBill( code);
             user.payBill(gasBill);
+            user.AddBill(gasBill);
         }
         else if(billType == 3){
             ElectUtilAPI electUtilAPI = new ElectUtilAPI();
-            Bill electBill = new ElectBill(electUtilAPI.getAmount(code), code,electUtilAPI.getAccount(code) );
+            Bill electBill = new GasBill(code);
             user.payBill(electBill);
+            user.AddBill(electBill);
         }
         else{
             System.out.println("Invalid Choice");
@@ -145,33 +148,33 @@ public class  InstaPay {
             System.out.println("3. Transfer to bank");
         }
         int transferType = scanner.nextInt();
-        scanner.nextLine();
         System.out.println("Enter amount you want to send: ");
         double amount = scanner.nextDouble();
-        Transfer MyTransfer = new Transfer(amount, user);
-        TransferStrategy strategy = null;
         if(transferType == 1){
             String username;
             User receiver;
             System.out.println("Enter username of receiver: ");
+            scanner.nextLine();
             username = scanner.nextLine();
             receiver = authService.searchUser(username);
             if(receiver == null)
                 System.out.println("No such account");
             else{
-                strategy=new InstaPayTransfer(receiver);
+                Transfer t=new InstaPayTransfer(amount,user,receiver);
+                t.transfer();
             }
         }
         else if(transferType == 2){
             String receiver;
             System.out.println("Enter wallet's phone number of receiver: ");
+            scanner.nextLine();
             receiver = scanner.nextLine();
             boolean check = walletAPI.Exists(receiver);
             if(!check)
                 System.out.println("No such wallet");
             else{
-                strategy= new WalletTransfer(receiver);
-
+                Transfer t=new WalletTransfer(amount,user,receiver);
+                t.transfer();
             }
         }
         else if(transferType == 3 && user.getType() == Type.Bank){
@@ -182,17 +185,17 @@ public class  InstaPay {
             if(!check)
                 System.out.println("No such a bank account");
             else{
-                strategy = new BankTransfer(receiver);
+                Transfer t=new BankTransfer(amount,user,receiver);
+                t.transfer();
             }
         }
         else{
             System.out.println("Invalid Choice");
         }
-        MyTransfer.SetTransferStrategy(strategy);
-        MyTransfer.transfer();
-        user.AddTransfer(MyTransfer);
+
     }
     public void showSystem() {
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. Sign In");
@@ -226,6 +229,11 @@ public class  InstaPay {
                                             for(Bill b:user.getBills()){
                                                 b.PrintBill();
                                             }
+                                            System.out.println("Received Transfers");
+                                            for(Transfer t:user.getRecieved()){
+                                                t.printtrans();
+                                            }
+
                                         }
                                         case 5 -> {
                                             System.out.println("Signing out.");

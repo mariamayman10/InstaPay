@@ -1,7 +1,6 @@
 package External;
 
 import Source.Bank;
-import Source.Wallet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +34,13 @@ public class BankAPI implements SourceAPI{
     }
 
     @Override
-    public void deposit(double amount, String receiverID) {
+    public boolean deposit(double amount, String receiverID) {
         for (Bank card : cards) {
             if (card.getCardNo().equals(receiverID)) {
                 card.setBalance(card.checkBalance() + amount);
             }
         }
+        return false;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package Bill;
 import External.UtilAPI;
 import User.*;
-public class Bill {
+public abstract class Bill {
     protected double amount;
     protected String code;
     protected String receiver;
@@ -19,10 +19,12 @@ public class Bill {
     public String getReceiver() {
         return receiver;
     }
-    public void PrintBill(){
-        System.out.println("Code: "+code);
-        System.out.println("Amount: "+amount);
+
+    public boolean PayBill(){
+        Comp.BillPayed(this);
+        return true;
     }
+    abstract public void PrintBill();
     public void setComp(UtilAPI api){
         Comp=api;
         amount=api.getAmount(code);

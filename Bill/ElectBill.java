@@ -2,21 +2,23 @@ package Bill;
 
 import User.User;
 
+import java.util.Random;
+
 public class ElectBill extends Bill {
     private long Kwatts;
-    private  float ElectTax;
-    public ElectBill(double amount, String code, String receiver){
-        super(amount, code, receiver);
+
+    public ElectBill(String code){
+        super( code);
+        Random rand= new Random();
+        Kwatts=rand.nextLong(100000);
     }
-    @Override
-    public boolean payBill() {
-        System.out.println("Elect bill");
-        return true;
-    }
+
 
     @Override
     public void PrintBill(){
         System.out.println("Electric Bill");
-        super.PrintBill();
+        System.out.println("Code: "+code);
+        System.out.println("Amount: "+amount);
+        System.out.println("Usage Watts : "+Kwatts);
     }
 }

@@ -1,7 +1,9 @@
 package Transfer;
 
-public interface TransferStrategy {
-boolean transfer(double amount);
+public interface  TransferStrategy {
+boolean transfer();
+boolean withdraw();
+boolean deposit();
 
 void printtrans();
 }

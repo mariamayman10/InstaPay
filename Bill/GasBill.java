@@ -2,20 +2,23 @@ package Bill;
 
 import User.User;
 
+import java.util.Random;
+
 public class GasBill extends Bill{
     private long CubicMetre ;
-    private float gasTax;
-    public GasBill(double amount, String code, String receiver){
-        super(amount, code, receiver);
+
+    public GasBill(String code){
+        super(code);
+        Random rand=new Random();
+        CubicMetre=rand.nextLong(100000);
     }
-    @Override
-    public boolean payBill() {
-        System.out.println("Gas bill");
-        return true;
-    }
+
     @Override
     public void PrintBill(){
         System.out.println("Gas Bill");
-        super.PrintBill();
+        System.out.println("Code: "+code);
+        System.out.println("Amount: "+amount);
+        System.out.println("Usage Cubic metre : "+CubicMetre);
+
     }
 }

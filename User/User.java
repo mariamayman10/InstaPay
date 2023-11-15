@@ -29,12 +29,10 @@ public abstract class User {
     }
     public boolean payBill(Bill bill){
         if(bill.getAmount()<getBalance()){
-            Transfer utiltran=new Transfer(bill.getAmount(),this);
-            WalletTransfer utilTrans = new WalletTransfer(bill.getReceiver());
-            utiltran.SetTransferStrategy(utilTrans);
-            if(utiltran.transfer()){
+            WalletTransfer utilTrans = new WalletTransfer(bill.getAmount(),this,bill.getReceiver());
+            if(utilTrans.transfer()){
                 Bills.add(bill);
-                return bill.payBill();
+                return bill.PayBill();
             }
         }
         return false;

@@ -1,34 +1,37 @@
 package Transfer;
 import User.*;
-public  class Transfer {
+public  abstract class Transfer {
     protected double amount;
     protected User sender;
-    private TransferStrategy ts;
+
 
     public Transfer(double amount,User sender) {
         this.amount = amount;
         this.sender = sender ;
     }
+
+
     public double getAmount() {
         return amount;
     }
 
     public boolean transfer(){
-        if(sender.getBalance()>amount){
-            sender.withdraw(amount);
-            return ts.transfer(amount);
+        if(checkBalance()){
+            withdraw();
+            deposit();
+            sender.AddTransfer(this);
+            return true;
         }
-        else{
-            System.out.println("No enough balance...");
-            return false;
-        }
+        return false;
     }
+public abstract void printtrans();
+public void withdraw(){
+    sender.withdraw(amount);
+}
+public abstract void deposit();
+public boolean checkBalance(){
+    return sender.getBalance()>amount;
+}
 
-    public void SetTransferStrategy(TransferStrategy strategy){
-        ts=strategy;
-    }
-    public void printtrans(){
-        ts.printtrans();
-        System.out.println("Amount : "+amount);
-    }
+
 }

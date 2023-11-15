@@ -1,6 +1,5 @@
 package External;
 
-import Source.Bank;
 import Source.Wallet;
 
 import java.util.ArrayList;
@@ -35,12 +34,13 @@ public class WalletAPI implements SourceAPI{
     }
 
     @Override
-    public void deposit(double amount, String receiverID) {
+    public boolean deposit(double amount, String receiverID) {
         for (Wallet wallet : wallets) {
             if (wallet.getPhoneNo().equals(receiverID)) {
                 wallet.setBalance(wallet.checkBalance() + amount);
             }
         }
+        return false;
     }
 
     @Override

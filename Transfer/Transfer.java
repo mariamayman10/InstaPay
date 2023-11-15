@@ -9,9 +9,6 @@ public  class Transfer {
         this.amount = amount;
         this.sender = sender ;
     }
-    public User getSender() {
-        return sender;
-    }
     public double getAmount() {
         return amount;
     }

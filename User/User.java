@@ -1,4 +1,4 @@
-package User;
+package User;//validation phone no , card bank
 import Bill.Bill;
 import Transfer.*;
 import User.*;
@@ -59,9 +59,6 @@ public abstract class User {
     }
     public String getPassword() {
         return password;
-    }
-    public void setType(Type type) {
-        this.type = type;
     }
     public void AddTransfer(Transfer t){
         Transfers.add(t);

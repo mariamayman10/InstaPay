@@ -120,20 +120,23 @@ public class  InstaPay {
         if(billType == 1){
             WaterUtilAPI waterUtilAPI = new WaterUtilAPI();
             Bill waterBill = new WaterBill(code);
+            waterBill.setComp(waterUtilAPI);
             user.payBill(waterBill);
-            user.AddBill(waterBill);
+
         }
         else if(billType == 2){
             GasUtilAPI gasUtilAPI = new GasUtilAPI();
             Bill gasBill = new ElectBill( code);
+            gasBill.setComp(gasUtilAPI);
             user.payBill(gasBill);
-            user.AddBill(gasBill);
+
         }
         else if(billType == 3){
             ElectUtilAPI electUtilAPI = new ElectUtilAPI();
-            Bill electBill = new GasBill(code);
+            Bill electBill = new ElectBill(code);
+            electBill.setComp(electUtilAPI);
             user.payBill(electBill);
-            user.AddBill(electBill);
+
         }
         else{
             System.out.println("Invalid Choice");

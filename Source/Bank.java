@@ -12,12 +12,10 @@ public class Bank {
         this.balance = balance;
     }
     public void withdraw(double amount){
-        BankAPI endpoint=new BankAPI();
-        endpoint.withdraw(amount, cardNo);
+        balance-=amount;
     }
     public void deposit(double amount){
-        BankAPI endpoint=new BankAPI();
-        endpoint.deposit(amount, cardNo);
+        balance+=amount;
     }
     public double checkBalance(){
         return balance;

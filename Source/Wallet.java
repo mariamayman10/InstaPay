@@ -14,12 +14,10 @@ public class Wallet {
     }
 
     public void withdraw(double amount){
-        WalletAPI endpoint=new WalletAPI();
-        endpoint.withdraw(amount, phoneNo);
+        balance-=amount;
     }
     public void deposit(double amount){
-        WalletAPI endpoint=new WalletAPI();
-        endpoint.deposit(amount, phoneNo);
+        balance+=amount;
     }
     public double checkBalance(){
         return balance;

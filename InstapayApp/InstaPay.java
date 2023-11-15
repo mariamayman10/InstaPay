@@ -176,11 +176,11 @@ public class  InstaPay {
         int transferType = scanner.nextInt();
         System.out.println("Enter amount you want to send: ");
         double amount = scanner.nextDouble();
+        scanner.nextLine();
         if(transferType == 1){
             String username;
             User receiver;
             System.out.println("Enter username of receiver: ");
-            scanner.nextLine();
             username = scanner.nextLine();
             receiver = authService.searchUser(username);
             if(receiver == null)

@@ -6,12 +6,6 @@ public class BankUser extends User{
         super(username, password,phoneNo, type);
         this.bankCard = card;
     }
-
-    @Override
-    public void deposit(double amount) {
-        bankCard.deposit(amount);
-    }
-
     @Override
     public double getBalance() {
         return bankCard.checkBalance();
@@ -26,6 +20,9 @@ public class BankUser extends User{
     public void withdraw(double amount) {
         bankCard.withdraw(amount);
     }
-
+    @Override
+    public void deposit(double amount) {
+        bankCard.deposit(amount);
+    }
 
 }

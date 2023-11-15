@@ -2,23 +2,22 @@ package Source;
 import java.util.Date;
 import External.BankAPI;
 public class Bank {
-    private String cardNo;
+    private final String cardNo;
     private Date expDate;
     private double balance;
 
-    public Bank(String card, Date date){
-        cardNo = card;
-        expDate = date;
+    public Bank(String card, Date date, double balance){
+        this.cardNo = card;
+        this.expDate = date;
+        this.balance = balance;
+    }
+    public void withdraw(double amount){
         BankAPI endpoint=new BankAPI();
-        balance =endpoint.getBalance(cardNo);
+        endpoint.withdraw(amount, cardNo);
     }
-    public boolean withdraw(double amount){
-        balance -= amount;
-        return true;
-    }
-    public boolean deposit(double Amount){
-       balance+=Amount;
-       return true;
+    public void deposit(double amount){
+        BankAPI endpoint=new BankAPI();
+        endpoint.deposit(amount, cardNo);
     }
     public double checkBalance(){
         return balance;
@@ -26,6 +25,7 @@ public class Bank {
     public String getCardNo(){
         return cardNo;
     }
-
-
+    public void setBalance(double b){
+        balance = b;
+    }
 }

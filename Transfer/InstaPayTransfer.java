@@ -11,20 +11,18 @@ public class InstaPayTransfer extends Transfer{
     }
 
     @Override
-    boolean withdraw() {
+    void withdraw() {
         sender.withdraw(amount);
-        return true;
     }
 
     @Override
-    boolean sendFunds() {
+    void deposit() {
         receiver.deposit(amount);
-        receiver.AddTransfer(this);
-        return true;
+        receiver.AddReceiver(this);
     }
 
     @Override
     public void printtrans() {
-        System.out.print("InstapayTransfer\nAmount : "+amount+"\nReciever : "+receiver.getUsername());
+        System.out.print("InstaPay Transfer\nAmount : "+amount+"\nReciever : "+receiver.getUsername());
     }
 }

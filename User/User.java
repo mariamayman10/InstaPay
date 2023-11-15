@@ -1,4 +1,4 @@
-package User;
+package User;//validation phone no , card bank
 import Bill.Bill;
 import Transfer.*;
 import User.*;
@@ -10,7 +10,7 @@ public abstract class User {
     private final String phoneNo;
     private Type type;
     private final ArrayList<Transfer> Transfers;
-    private final ArrayList<Transfer> Recieved;
+    private final ArrayList<Transfer> Received;
     private final ArrayList<Bill> Bills;
     public User(String username, String password,String phoneNo, Type type) {
         this.username = username;
@@ -18,7 +18,7 @@ public abstract class User {
         this.phoneNo = phoneNo;
         this.type = type;
         this.Transfers = new ArrayList<Transfer>();
-        this.Recieved = new ArrayList<Transfer>();
+        this.Received = new ArrayList<Transfer>();
         this.Bills = new ArrayList<Bill>();
 
     }
@@ -33,11 +33,11 @@ public abstract class User {
         return false;
     }
     public boolean transfer(Transfer transfer){
-        boolean ret = transfer.transfer();
         if(transfer.transfer()){
             AddTransfer(transfer);
+            return true;
         }
-        return ret;
+        return false;
     }
     public abstract void withdraw(double amount);
     public abstract void deposit(double amount);
@@ -47,6 +47,7 @@ public abstract class User {
         return Bills;
     }
     public ArrayList<Transfer> getTransfers(){return Transfers;}
+    public ArrayList<Transfer> getReceived(){return Received;}
     public Type getType() {
         return type;
     }
@@ -59,14 +60,11 @@ public abstract class User {
     public String getPassword() {
         return password;
     }
-    public void setType(Type type) {
-        this.type = type;
-    }
     public void AddTransfer(Transfer t){
         Transfers.add(t);
     }
-    public void ReceiveTransfer(Transfer t){
-        Recieved.add(t);
+    public void AddReceiver(Transfer t){
+        Received.add(t);
     }
     public void AddBill(Bill b){
         Bills.add(b);

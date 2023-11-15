@@ -1,7 +1,8 @@
 package Transfer;
 
 import External.BankAPI;
-import User.User;
+import External.WalletAPI;
+import User.*;
 
 public class BankTransfer extends Transfer{
 
@@ -12,19 +13,25 @@ public class BankTransfer extends Transfer{
     }
 
     @Override
-    boolean withdraw() {
-        sender.withdraw(amount);
-        return true;
+    void withdraw() {
+        if(sender.getType() == Type.Bank){
+            BankAPI endpoint=new BankAPI();
+            endpoint.withdraw(amount, sender.getSource());
+        }
+        else{
+            WalletAPI endpoint=new WalletAPI();
+            endpoint.withdraw(amount, sender.getSource());
+        }
     }
 
     @Override
-    boolean sendFunds() {
+    void deposit() {
         BankAPI endpoint=new BankAPI();
-        return endpoint.deposit(amount,bankAcc);
+        endpoint.deposit(amount,bankAcc);
     }
 
     @Override
     public void printtrans() {
-        System.out.print("Bank Transfer\nAmount : "+amount+"\nReceiver : "+bankAcc+"\n");
+        System.out.print("\nBank Transfer\nAmount : "+amount+"\nReceiver : "+bankAcc+"\n");
     }
 }

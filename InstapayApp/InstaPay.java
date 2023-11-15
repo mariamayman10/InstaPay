@@ -12,7 +12,7 @@ import java.util.InputMismatchException;
 
 public class  InstaPay {
     private final WalletAPI walletAPI;
-    private final BankAPI bankAPI;
+    private BankAPI bankAPI;
     private final AuthenticationService authService;
     private User user;
 
@@ -70,9 +70,10 @@ public class  InstaPay {
             if(!walletAPI.Exists(phoneNumber)) {
                 System.out.println("Invalid wallet account");
             }
-            Wallet wallet=new Wallet(phoneNumber);
+            Wallet wallet=new Wallet(phoneNumber, walletAPI.getRandom());
             userType = Type.Wallet;
             newUser = new WalletUser(username, password, phoneNumber, userType, wallet);
+            walletAPI.addWallet(wallet);
         }
         else if (op == 2) {
             System.out.println("Enter Your Card bank");
@@ -88,19 +89,20 @@ public class  InstaPay {
                 exp = scanner.nextLine();
                 date1=new SimpleDateFormat("MM/yy").parse(exp);
             }
-            Bank card=new Bank(cardNo,date1);
+            Bank card=new Bank(cardNo,date1, bankAPI.getRandom());
             userType = Type.Bank;
             newUser = new BankUser(username, password, phoneNumber, userType, card);
+            bankAPI.addCard(card);
         }
         else {
             System.out.println("Invalid Option");
             return;
         }
         authService.addUser(newUser);
+        System.out.println("Signed up successfully");
     }
     public void checkBalance(User user) {
         System.out.println("Your Balance " + user.getBalance());
-
     }
     public void payBill(){
         Scanner scanner = new Scanner(System.in);
@@ -158,7 +160,7 @@ public class  InstaPay {
                 System.out.println("Enter amount you want to send: ");
                 amount = scanner.nextDouble();
                 Transfer instaPayTransfer = new InstaPayTransfer(amount, user, receiver);
-               user.transfer(instaPayTransfer);
+                user.transfer(instaPayTransfer);
             }
         }
         else if(transferType == 2){
@@ -172,7 +174,10 @@ public class  InstaPay {
                 System.out.println("Enter amount you want to send: ");
                 amount = scanner.nextDouble();
                 Transfer walletTransfer = new WalletTransfer(amount, user, receiver);
-                boolean ret = user.transfer(walletTransfer);
+                if(user.transfer(walletTransfer)){
+                    System.out.println("Transfer done successfully");
+                }
+                else System.out.println("Transfer Failed");
             }
         }
         else if(transferType == 3 && user.getType() == Type.Bank){
@@ -186,7 +191,10 @@ public class  InstaPay {
                 System.out.println("Enter amount you want to send: ");
                 amount = scanner.nextDouble();
                 Transfer bankTransfer = new BankTransfer(amount, user, receiver);
-                boolean ret = user.transfer(bankTransfer);
+                if(user.transfer(bankTransfer)){
+                    System.out.println("Transfer done successfully");
+                }
+                else System.out.println("Transfer Failed");
             }
         }
         else{

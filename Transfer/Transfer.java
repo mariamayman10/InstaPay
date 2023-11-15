@@ -8,17 +8,15 @@ public abstract class Transfer {
         this.amount = amount;
         this.sender = sender ;
     }
-    public User getSender() {
-        return sender;
-    }
     public double getAmount() {
         return amount;
     }
 
     public boolean transfer(){
         if(checkBalance(this.amount)){
-            withdraw();
-            return sendFunds();
+            this.withdraw();
+            this.deposit();
+            return true;
         }
         else{
             System.out.println("No enough balance...");
@@ -29,7 +27,7 @@ public abstract class Transfer {
     protected boolean checkBalance(double amount){
         return sender.getBalance() >= amount;
     }
-    abstract boolean withdraw();
-    abstract boolean sendFunds();
+    abstract void withdraw();
+    abstract void deposit();
     public abstract void printtrans();
 }

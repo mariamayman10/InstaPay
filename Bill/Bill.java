@@ -20,7 +20,7 @@ public abstract class Bill {
         return receiver;
     }
 
-    public boolean PayBill(){
+    public boolean payBill(){
         Comp.BillPayed(this);
         return true;
     }

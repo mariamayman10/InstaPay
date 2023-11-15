@@ -85,16 +85,26 @@ public class  InstaPay {
             System.out.println("Enter Your Card bank");
             cardNo = scanner.nextLine();
             System.out.println("Enter Your Card expiration date MM/YY format");
-            String exp = scanner.nextLine();
-            Date date1=new SimpleDateFormat("MM/yy").parse(exp);
-            while (!bankAPI.Exists(cardNo)) {
-                System.out.println("Invalid bank account");
-                System.out.println("Enter Your Card bank");
-                cardNo = scanner.nextLine();
-                System.out.println("Enter Your Card expiration date MM/YY format");
-                exp = scanner.nextLine();
-                date1=new SimpleDateFormat("MM/yy").parse(exp);
+            Date date1;
+            while (true) {
+                String exp = scanner.nextLine();
+                try {
+                    date1 = new SimpleDateFormat("MM/yy").parse(exp);
+                    while (!bankAPI.Exists(cardNo)) {
+                        System.out.println("Invalid bank account");
+                        System.out.println("Enter Your Card bank");
+                        cardNo = scanner.nextLine();
+                        System.out.println("Enter Your Card expiration date MM/YY format");
+                        exp = scanner.nextLine();
+                        date1 = new SimpleDateFormat("MM/yy").parse(exp);
+                    }
+                    break;
+                } catch (ParseException e) {
+                    System.out.println("Invalid date format.");
+                    System.out.println("Enter Your Card expiration date again");
+                }
             }
+
             Bank card=new Bank(cardNo,date1, bankAPI.getRandom());
             userType = Type.Bank;
             newUser = new BankUser(username, password, phoneNumber, userType, card);

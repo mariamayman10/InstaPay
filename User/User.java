@@ -1,4 +1,4 @@
-package User;//validation phone no , card bank
+package User;
 import Bill.Bill;
 import Transfer.*;
 import User.*;
@@ -32,7 +32,7 @@ public abstract class User {
             WalletTransfer utilTrans = new WalletTransfer(bill.getAmount(),this,bill.getReceiver());
             if(utilTrans.transfer()){
                 Bills.add(bill);
-                return bill.PayBill();
+                return bill.payBill();
             }
         }
         return false;
@@ -41,7 +41,6 @@ public abstract class User {
     public abstract void withdraw(double amount);
     public abstract void deposit(double amount);
     public abstract double getBalance();
-    public abstract String getSource();
     public ArrayList<Bill> getBills() {
         return Bills;
     }
